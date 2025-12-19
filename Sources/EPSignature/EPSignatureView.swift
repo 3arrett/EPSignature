@@ -58,6 +58,7 @@ open class EPSignatureView: UIView {
     }
     
     @objc func longPressed(_ gesture: UILongPressGestureRecognizer) {
+      isSigned = true
         let touchPoint = gesture.location(in: self)
         let endAngle: CGFloat = .pi * 2.0
         bezierPath.move(to: touchPoint)
@@ -68,7 +69,6 @@ open class EPSignatureView: UIView {
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
         if let currentPoint = touchPoint(touches) {
-            isSigned = true
             bezierPoints[0] = currentPoint
             bezierCounter = 0
         }
@@ -76,6 +76,7 @@ open class EPSignatureView: UIView {
     
     override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let currentPoint = touchPoint(touches) {
+          isSigned = true
             bezierCounter += 1
             bezierPoints[bezierCounter] = currentPoint
 
